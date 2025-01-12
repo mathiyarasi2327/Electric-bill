@@ -1,0 +1,50 @@
+# Electric-bill
+import java.util.Scanner;
+
+public class ElectricBill {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input customer details
+        System.out.print("Enter customer name: ");
+        String customerName = scanner.nextLine();
+
+        System.out.print("Enter number of units consumed: ");
+        int units = scanner.nextInt();
+
+        double billAmount = 0.0;
+
+        // Calculate bill based on slabs
+        if (units <= 100) {
+            billAmount = units * 1.50; // For first 100 units
+        } else if (units <= 200) {
+            billAmount = 100 * 1.50 + (units - 100) * 2.00; // Next 100 units
+        } else if (units <= 300) {
+            billAmount = 100 * 1.50 + 100 * 2.00 + (units - 200) * 3.00; // Next 100 units
+        } else {
+            billAmount = 100 * 1.50 + 100 * 2.00 + 100 * 3.00 + (units - 300) * 5.00; // Above 300 units
+        }
+
+        // Add fixed charge
+        double fixedCharge = 50.0;
+        billAmount += fixedCharge;
+
+        // Display bill
+        System.out.println("\nElectric Bill");
+        System.out.println("--------------");
+        System.out.println("Customer Name: " + customerName);
+        System.out.println("Units Consumed: " + units);
+        System.out.println("Total Amount: $" + String.format("%.2f", billAmount));
+
+        scanner.close();
+    }
+}
+output:
+Enter customer name: John Doe
+Enter number of units consumed: 250
+
+Electric Bill
+--------------
+Customer Name: John Doe
+Units Consumed: 250
+Total Amount: $650.00
